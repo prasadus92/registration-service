@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+
+  mongodb:
+    image: mongo:3.6
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./storage/mongodb/data/db:/data/db
+    ports:
+      - "27017:27017"
+    command: mongod --smallfiles
+
+  registration-service:
+    image: gamesys/registration-service:latest
+    ports:
+      - "8080:8080"
+    command: ["-wait tcp://mongodb:27017 -wait-retry-interval 10s -timeout 30s"]
+    environment:
+      - JAVA_OPTS=-Xms64m -Xmx512m
+      - spring.profiles.active=docker
+
