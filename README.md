@@ -1,5 +1,7 @@
 # Gamesys Registration Service
 
+[![Build Status](https://travis-ci.com/prasadus92/registration-service.svg?branch=master)](https://travis-ci.com/prasadus92/registration-service)
+
 ## Problem Statement
 
 The task is to write a Java based web service that provides a simple endpoint for user registration.
